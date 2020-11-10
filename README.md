@@ -47,12 +47,39 @@ Connection to linux.socs.uoguelph.ca closed.
 
 ### a3data.sql
 
+Write a PostgreSQL program/script to create the three tables with names: *vendor*, *customer*, and *transaction*; specify the vendor number, account number and transaction number as the primary keys respectively.
+Insert data into the tables ***(2%)***, where the data are those on the eighth page of the "SQL" course notes (see tables below). Note: use the PostgreSQL date format to store dates.
+
+| **Vno** | Vname | City | Vbalance |
+|---------|-------|------|----------|
+| V1 | IKEA | Toronto | 200.00 |
+| V2 | Walmart | Waterloo | 671.05 |
+| V3 | Esso | Windsor | 0.00 |
+| V4 | Esso | Waterloo | 225.00 |
+
+| **Account** | Cname | Province | Cbalance | Crlimit |
+|-------------|-------|----------|----------|---------|
+| A1 | Smith | ONT | 2515.00 | 2000 |
+| A2 | Jones | BC | 2014.00 | 2500 |
+| A3 | Doc | ONT | 150.00 | 1000 |
+
+| **Tno** | Vno | Account | T_date | Amount |
+|---------|-----|---------|--------|--------|
+| T1 | V2 | A1 | 2020-07-15 | 1325.00 |
+| T2 | V2 | A3 | 2019-12-16 | 1900.00 |
+| T3 | V3 | A1 | 2020-09-01 | 2500.00 |
+| T4 | V4 | A2 | 2020-03-20 | 1613.00 |
+| T5 | V4 | A3 | 2020-07-31 | 2212.00 |
+
 Usage: `\i create.sql`
 
-> Creates the tables and inserts the data
+> Creates the tables and inserts the data - Example input, output:
 
 ```text
-EXAMPLE OUTPUT
+userid=> \i create.sql
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
 ```
 
 ### p1.sql
