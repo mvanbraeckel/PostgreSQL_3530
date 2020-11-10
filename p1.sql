@@ -6,6 +6,7 @@
 
 create or replace function q01(name char) returns void as $$ 
 	begin 
-        return query select vname, t_date, amount from c natural join t where cname=name;
+    
+    return query select vname, t_date, amount from customer natural join transaction natural join vendor where cname=name;
 	end; 
 $$ language plpgsql;

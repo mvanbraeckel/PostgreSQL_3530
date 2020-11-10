@@ -102,7 +102,7 @@ userid=>
 
 Program 1: displays data of all the transactions of a given customer. For each transaction, the data to display include vendor name, date, and amount. Write the program as a function that accepts a customer name as a parameter, and displays transactions of the customer. ***(1%)***
 
-Usage: `\i f01.sql` (psql command), then `select func1();` (SQL command)
+Usage: `\i p1.sql` (psql command), then `select q01();` (SQL command)
 
 > To execute a function within a file, it will say CREATE FUNCTION after creating it (using the first command)
 
