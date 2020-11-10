@@ -5,8 +5,8 @@
 - @version 10/11/2020
 - @file README
 - @brief Uses PostgreSQL to create tables and perform operations for a database that represents a tiny credit card company, where tables store data of customers, vendors, and transactions (Data Base Systems & Concepts course A3)
-- @note use `ssh mvanbrae@linux.socs.uoguelph.ca` to connect, where files are in `cis3530/a3/`; then use `psql -h db` (actually use `psql -h db -d mvanbrae -U mvanbrae`?) to connect to PostgreSQL database to test things
-  - use `kinit` and enter central login ID password if error like the following occurs when trying to connect:
+- @note personal use: `ssh userid@linux.socs.uoguelph.ca` to connect, where files are in `cis3530/a3/`; then use `psql -h db` (actually use `psql -h db -d userid -U userid`?) to connect to PostgreSQL database to test things (where userid=mvanbrae for my account)
+  - Use `kinit` and enter central login ID password if error like the following occurs when trying to connect:
 
 ```text
 psql: GSSAPI continuation error: Unspecified GSS failure.  Minor code may provide more information
@@ -77,12 +77,30 @@ Usage: `\i create.sql`
 
 ```text
 userid=> \i create.sql
+DROP TABLE
+DROP TABLE
+DROP TABLE
 CREATE TABLE
 CREATE TABLE
 CREATE TABLE
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+userid=> 
 ```
 
 ### p1.sql
+
+Program 1: displays data of all the transactions of a given customer. For each transaction, the data to display include vendor name, date, and amount. Write the program as a function that accepts a customer name as a parameter, and displays transactions of the customer. ***(1%)***
 
 Usage: `\i f01.sql` (psql command), then `select func1();` (SQL command)
 

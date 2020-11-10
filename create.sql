@@ -1,7 +1,9 @@
--- Write a PostgreSQL program/script to create the three tables with names: vendor, customer, and transaction;
---  specify the vendor number, account number and transaction number as the PRIMARY KEYs respectively.
--- Insert data into the tables (2%), where the data are those on the eighth page of the Lecture 4.1 SQL course notes.
---  Use the PostgreSQL date format to store dates.
+/*
+ * Write a PostgreSQL program/script to create the three tables with names: vendor, customer, and transaction;
+ *  specify the vendor number, account number and transaction number as the PRIMARY KEYs respectively.
+ * Insert data into the tables (2%), where the data are those on the eighth page of the Lecture 4.1 SQL course notes.
+ *  Use the PostgreSQL date format to store dates.
+ */
 
 -- | **Vno** | Vname | City | Vbalance |
 -- |---------|-------|------|----------|
@@ -31,7 +33,7 @@ DROP TABLE IF EXISTS transaction;
 
 -- create tables
 CREATE TABLE IF NOT EXISTS vendor (Vno CHAR(5), Vname CHAR(20), City CHAR(10), Vbalance NUMERIC(10,2), PRIMARY KEY(Vno));
-CREATE TABLE IF NOT EXISTS customer (Account CHAR(5), Cname CHAR(20), Province CHAR(5), Cbalance NUMERIC(10,2), Crlimit int, PRIMARY KEY(Account));
+CREATE TABLE IF NOT EXISTS customer (Account CHAR(5), Cname CHAR(20), Province CHAR(5), Cbalance NUMERIC(10,2), Crlimit INT, PRIMARY KEY(Account));
 CREATE TABLE IF NOT EXISTS transaction (Tno CHAR(5), Vno CHAR(5), Account CHAR(5), T_date DATE, Amount NUMERIC(10,2), PRIMARY KEY(Tno));
 
 -- insert data into each table
