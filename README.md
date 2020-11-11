@@ -330,3 +330,14 @@ NOTICE:  Esso                 9.00 216.00
 
 mvanbrae=>
 ```
+
+### p7.sql
+
+Program 7: Charges a service fee for each customer whose current balance is greater than the credit limit and add the charge to the balance. The service fee is 10% of the portion over the credit limit. The program then displays the name of each of such customers and the new balance. ***(2%)***
+
+Usage: `\i p7.sql` (psql command), then `select q07();` (SQL command)
+
+> After creating the function for P7, select the function to receive table output that displays each vendor's name, and new balance (after adding the 10% service fee of the amount over their credit limit) - Example input, output:
+
+```text
+```
