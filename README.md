@@ -307,4 +307,26 @@ Usage: `\i p6.sql` (psql command), then `select q06();` (SQL command)
 > After creating the function for P6, select the function to receive a series of notices that displays each vendor's name, fee charged, and new balance (after subtracting the 4% service fee) - Example input, output:
 
 ```text
+mvanbrae=> SELECT * FROM vendor;
+  vno  |        vname         |    city    | vbalance
+-------+----------------------+------------+----------
+ V1    | IKEA                 | Toronto    |   200.00
+ V2    | Walmart              | Waterloo   |   671.05
+ V3    | Esso                 | Windsor    |     0.00
+ V4    | Esso                 | Waterloo   |   225.00
+(4 rows)
+
+mvanbrae=> \i p6.sql
+CREATE FUNCTION
+mvanbrae=> select q06();
+NOTICE:  IKEA                 8.00 192.00
+NOTICE:  Walmart              26.84 644.21
+NOTICE:  Esso                 0.00 0.00
+NOTICE:  Esso                 9.00 216.00
+ q06
+-----
+
+(1 row)
+
+mvanbrae=>
 ```

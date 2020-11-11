@@ -20,7 +20,7 @@ create or replace function q06() returns void as $$
 
             select vname, vbalance into v_name, v_bal from vendor where vno=v_num;
             service_charge := 0.04 * v_bal;
-            new_bal := v_bal - new_bal;
+            new_bal := v_bal - service_charge;
             update vendor set vbalance = new_bal where vno=v_num;
 
             raise notice '% % %', v_name, service_charge, new_bal;
