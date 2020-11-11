@@ -9,9 +9,9 @@ create or replace function q07() returns table (cust_name CHAR(20), cust_bal NUM
         c1 cursor for select account from customer;
         acc char(5);
         c_name char(20);
-        c_bal NUMERIC(10,2);
-        c_limit
-        new_bal NUMERIC(10,2);
+        c_bal numeric(10,2);
+        c_limit int;
+        new_bal numeric(10,2);
         
     begin
         open c1;

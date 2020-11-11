@@ -8,9 +8,9 @@ create or replace function q06() returns void as $$
         c1 cursor for select vno from vendor;
         v_num char(5);
         v_name char(20);
-        v_bal NUMERIC(10,2);
-        service_charge NUMERIC(10,2);
-        new_bal NUMERIC(10,2);
+        v_bal numeric(10,2);
+        service_charge numeric(10,2);
+        new_bal numeric(10,2);
         
     begin
         open c1;
