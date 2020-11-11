@@ -19,7 +19,7 @@ create or replace function q08(v_no CHAR(5), c_acc CHAR(5), t_amt NUMERIC(10,2))
     declare
         -- default 0=false, 1=true
         invalid_vno boolean := 0;
-        invalid_acc boolean := 1;
+        invalid_acc boolean := 0;
         t_no char(5);
         id int := 1;
         curr_date date := (SELECT CURRENT_DATE);
@@ -33,7 +33,7 @@ create or replace function q08(v_no CHAR(5), c_acc CHAR(5), t_amt NUMERIC(10,2))
             invalid_acc := 1;
             raise exception 'Nonexistent customer account number = %', c_acc;
         end if;
-        
+
         if not invalid_vno and not invalid_acc then
             loop
                 if not exists(select tno from transaction where tno=('T' || id)) then
