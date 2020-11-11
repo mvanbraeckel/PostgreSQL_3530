@@ -42,6 +42,11 @@ Connection to linux.socs.uoguelph.ca closed.
 
 ## Notes & Assumptions
 
+- NOTE: `a3data.sql` first drops the tables and then creates them (checks existence in both cases still)
+  - This makes it useful for clearing data from other scripts to reset the database
+- Assumption: Unless otherwise stated, assume nothing has changed from the database before running the script / example input output.
+- Assumuption: vendor `vbalance` represents money the vendor has and customer `cbalance` represents money owed to their credit card
+
 ## How to Use
 
 ### a3data.sql
