@@ -33,29 +33,28 @@ create or replace function q08(v_no CHAR(5), c_acc CHAR(5), t_amt NUMERIC(10,2))
             invalid_acc := 1;
             raise exception 'Nonexistent customer account number = %', c_acc;
         end if;
-        if invalid_vno or invalid_acc then
-            exit;
+        
+        if not invalid_vno and not invalid_acc then
+            loop
+                if not exists(select tno from transaction where tno=('T' || id)) then
+                    t_no := 'T' || id;
+                    --raise notice 'new tno = %', t_no;
+                    exit;
+                else
+                    id := id + 1;
+                end if;
+            end loop;
+
+            --curr_date := (SELECT CURRENT_DATE);
+
+            --NOTE: the trans amount increase customer credit card owing amount and increases vendor total money, ie:
+            --NOTE: cbal increases because they now owe more money on their credit card
+            --NOTE: vbal increases because vendor now has more money
+            insert into transaction values (t_no, v_no, c_acc, curr_date, t_amt);
+            update customer set cbalance = cbalance + t_amt where account=c_acc;
+            update vendor set vbalance = vbalance + t_amt where vno=v_no;
+
+            return query select * from transaction natural join customer natural join vendor where tno=t_no;
         end if;
-
-        loop
-            if not exists(select tno from transaction where tno=('T' || id)) then
-                t_no := 'T' || id;
-                --raise notice 'new tno = %', t_no;
-                exit;
-            else
-                id := id + 1;
-            end if;
-        end loop;
-
-        --curr_date := (SELECT CURRENT_DATE);
-
-        --NOTE: the trans amount increase customer credit card owing amount and increases vendor total money, ie:
-        --NOTE: cbal increases because they now owe more money on their credit card
-        --NOTE: vbal increases because vendor now has more money
-        insert into transaction values (t_no, v_no, c_acc, curr_date, t_amt);
-        update customer set cbalance = cbalance + t_amt where account=c_acc;
-        update vendor set vbalance = vbalance + t_amt where vno=v_no;
-
-        return query select * from transaction natural join customer natural join vendor where tno=t_no;
     end;
 $$ language plpgsql;
