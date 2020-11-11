@@ -27,11 +27,11 @@ create or replace function q08(v_no CHAR(5), c_acc CHAR(5), t_amt NUMERIC(10,2))
     begin
         if not exists(select vno from vendor where vno=v_no) then
             invalid_vno := 1;
-            raise exception 'Nonexistent vendor number = %', v_no;
+            raise exception 'Nonexistent vendor number = %', v_no using hint = 'Please enter a valid vendor number';
         end if;
         if not exists(select account from customer where account=c_acc) then
             invalid_acc := 1;
-            raise exception 'Nonexistent customer account number = %', c_acc;
+            raise exception 'Nonexistent customer account number = %', c_acc using hint = 'Please enter a valid customer account number';
         end if;
 
         if not invalid_vno and not invalid_acc then
