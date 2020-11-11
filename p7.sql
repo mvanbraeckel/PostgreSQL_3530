@@ -8,7 +8,6 @@ create or replace function q07() returns table (cust_name CHAR(20), cust_bal NUM
     declare
         c1 cursor for select account from customer;
         acc char(5);
-        c_name char(20);
         c_bal numeric(10,2);
         c_limit int;
         new_bal numeric(10,2);
@@ -19,13 +18,11 @@ create or replace function q07() returns table (cust_name CHAR(20), cust_bal NUM
             fetch c1 into acc;
             exit when not found;
 
-            select cname, cbalance, crlimit into c_name, c_bal, c_limit from customer where account=acc;
+            select cbalance, crlimit into c_bal, c_limit from customer where account=acc;
 
             if c_bal > c_limit then
                 new_bal := c_bal + 0.1 * (c_bal - c_limit);
                 update customer set cbalance = new_bal where account=acc;
-
-                raise notice '% %', c_name, new_bal;
             end if;
         end loop;
         close c1;
