@@ -50,6 +50,9 @@ Connection to linux.socs.uoguelph.ca closed.
 - Assumption: customer `cbalance` represents money owed to their credit card
 - Assumption: wherever it applies, either displaying info using `raise notice` or `return` (table) are both acceptable
 - Assumption: as long as all the desired information is displayed, any format and/or order is acceptable
+- NOTE: usually I only included reasonable parameters to functions when an entry would be created in the database, not the primary keys
+  - When this happens, it looks for the lowest unused primary key value (rather than finding the largest and incrementing)
+  - Please see below for details and examples of how to run each script
 
 ## How to Use
 
