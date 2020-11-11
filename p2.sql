@@ -4,7 +4,7 @@
  *  Write the program as a function that accepts a vendor name as a parameter and displays data of customers. (1%)
  */
 
-create or replace function q02(name char) returns table (Account CHAR(5), Cname CHAR(20), Province CHAR(5)) as $$
+create or replace function q02(name char) returns table (cust_acc CHAR(5), cust_name CHAR(20), cust_prov CHAR(5)) as $$
     begin
         return query
         select account, cname, province
