@@ -142,5 +142,27 @@ Usage: `\i p2.sql` (psql command), then `select q02('Vendor-Name');` (SQL comman
 > After creating the function for P2, select the function and provide a vendor name as a parameter to receive table output that displays customer numbers, names, and provinces - Example input, output:
 
 ```text
+mvanbrae=> \i p2.sql 
+CREATE FUNCTION
+mvanbrae=> select q02('IKEA');
+ q02
+-----
+(0 rows)
 
+mvanbrae=> select q02('Walmart');
+                   q02
+------------------------------------------
+ ("A1   ","Smith               ","ONT  ")
+ ("A3   ","Doc                 ","ONT  ")
+(2 rows)
+
+mvanbrae=> select q02('Esso');
+                   q02
+------------------------------------------
+ ("A1   ","Smith               ","ONT  ")
+ ("A2   ","Jones               ","BC   ")
+ ("A3   ","Doc                 ","ONT  ")
+(3 rows)
+
+mvanbrae=>
 ```
