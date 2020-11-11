@@ -228,13 +228,13 @@ mvanbrae=>
 ```text
 mvanbrae=> \i p3.sql
 CREATE FUNCTION
-mvanbrae=> select q03('Piccolo', 'NAMEK', 8000);
+mvanbrae=> select q03('Bubbles', 'KAI', 1000);
                           q03
 -------------------------------------------------------
  ("A1   ","Smith               ","ONT  ",2515.00,2000)
  ("A2   ","Jones               ","BC   ",2014.00,2500)
  ("A3   ","Doc                 ","ONT  ",150.00,1000)
- ("A4   ","Piccolo             ",NAMEK,0.00,8000)
+ ("A4   ","Bubbles             ","KAI  ",0.00,1000)
 (4 rows)
 
 mvanbrae=> \i p4.sql
@@ -243,7 +243,7 @@ mvanbrae=> select q04();
 NOTICE:  A1    Smith                2500.00 Esso
 NOTICE:  A2    Jones                1613.00 Esso
 NOTICE:  A3    Doc                  2212.00 Esso
-NOTICE:  A4    Piccolo              "no transaction"
+NOTICE:  A4    Bubbles              "no transaction"
  q04
 -----
 
