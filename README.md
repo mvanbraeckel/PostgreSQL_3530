@@ -166,3 +166,35 @@ mvanbrae=> select q02('Esso');
 
 mvanbrae=>
 ```
+
+### p3.sql
+
+Program 3: Inserts a new customer record (tuple). Write this program as a function, which takes data of the customer as parameters and stores the data into the customer table. It then displays all the customer records, where the balance of the new customer should be zero (0.00). ***(2%)***
+
+Usage: `\i p3.sql` (psql command), then `select q03('Customer-Name', 'Province', credit_limit);` (SQL command)
+
+> After creating the function for P3, select the function and provide a customer name, province, and credit limit as parameters to receive table output that displays all customers after adding the new customer with balance of 0.00 - Example input, output:
+
+```text
+mvanbrae=> select q03('Mitchell', 'MB', 9001);
+                          q03
+-------------------------------------------------------
+ ("A1   ","Smith               ","ONT  ",2515.00,2000)
+ ("A2   ","Jones               ","BC   ",2014.00,2500)
+ ("A3   ","Doc                 ","ONT  ",150.00,1000)
+ ("A4   ","Mitchell            ","MB   ",0.00,9001)
+(4 rows)
+
+mvanbrae=> select q03('Grace Kim', 'ONT', 1000);
+                          q03
+-------------------------------------------------------
+ ("A1   ","Smith               ","ONT  ",2515.00,2000)
+ ("A2   ","Jones               ","BC   ",2014.00,2500)
+ ("A3   ","Doc                 ","ONT  ",150.00,1000)
+ ("A4   ","Mitchell            ","MB   ",0.00,9001)
+ ("A5   ","Grace Kim           ","ONT  ",0.00,1000)
+(5 rows)
+
+mvanbrae=>
+```
+
