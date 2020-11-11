@@ -16,10 +16,13 @@ create or replace function q05() returns table (vendor_num CHAR(5), vendor_name 
             fetch c1 into v_num;
             exit when not found;
 
-            select sum(amount) into total_trans from customer natural join transaction natural join vendor where vno=v_num;
-            update transaction set vbalance = vbalance + total_trans where vno=v_num;
-
+            if exists(select t_date from transaction where vno=v_num) then
+                select sum(amount) into total_trans from transaction where vno=v_num;
+            else
+                total_trans := 0;
             end if;
+            
+            update vendor set vbalance = vbalance + total_trans where vno=v_num;
         end loop;
         close c1;
 

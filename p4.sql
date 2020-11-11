@@ -19,10 +19,10 @@ create or replace function q04() returns void as $$
             fetch c1 into acc;
             exit when not found;
 
-            if exists(select t_date from customer natural join transaction where account=acc) then
+            if exists(select t_date from transaction where account=acc) then
                 select account, cname, amount, vname into c_acc, c_name, t_amt, v_name
                 from customer natural join transaction natural join vendor where t_date = (
-                    select max(t.t_date) from customer as c natural join transaction as t where c.account=acc
+                    select max(t.t_date) from transaction as t where t.account=acc
                 );
                 raise notice '% % % %', c_acc, c_name, t_amt, v_name;
             else
