@@ -100,12 +100,47 @@ userid=>
 
 ### p1.sql
 
-Program 1: displays data of all the transactions of a given customer. For each transaction, the data to display include vendor name, date, and amount. Write the program as a function that accepts a customer name as a parameter, and displays transactions of the customer. ***(1%)***
+Program 1: Displays data of all the transactions of a given customer. For each transaction, the data to display include vendor name, date, and amount. Write the program as a function that accepts a customer name as a parameter, and displays transactions of the customer. ***(1%)***
 
-Usage: `\i p1.sql` (psql command), then `select q01();` (SQL command)
+Usage: `\i p1.sql` (psql command), then `select q01('Customer-Name');` (SQL command)
 
-> To execute a function within a file, it will say CREATE FUNCTION after creating it (using the first command)
+> After creating the function for P1, select the function and provide a customer name as a parameter to receive table output that displays vendor name, data, and amount - Example input, output:
 
 ```text
-EXAMPLE OUTPUT
+mvanbrae=> \i p1.sql
+CREATE FUNCTION
+mvanbrae=> select q01('Smith')
+mvanbrae-> ;
+                     q01
+---------------------------------------------
+ ("Walmart             ",2020-07-15,1325.00)
+ ("Esso                ",2020-09-01,2500.00)
+(2 rows)
+
+mvanbrae=> select q01('Jones');
+                     q01
+---------------------------------------------
+ ("Esso                ",2020-03-20,1613.00)
+(1 row)
+
+mvanbrae=> select q01('Doc');
+                     q01
+---------------------------------------------
+ ("Walmart             ",2019-12-16,1900.00)
+ ("Esso                ",2020-07-31,2212.00)
+(2 rows)
+
+mvanbrae=>
+```
+
+### p2.sql
+
+Program 2: Displays data of the customers who have transactions with a given vendor. The data include customer numbers, customer names, and provinces. Write the program as a function that accepts a vendor name as a parameter and displays data of customers. ***(1%)***
+
+Usage: `\i p2.sql` (psql command), then `select q02('Vendor-Name');` (SQL command)
+
+> After creating the function for P2, select the function and provide a vendor name as a parameter to receive table output that displays customer numbers, names, and provinces - Example input, output:
+
+```text
+
 ```
