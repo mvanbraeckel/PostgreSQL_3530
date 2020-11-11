@@ -366,7 +366,58 @@ Program 8: Adds a new transaction. Each time the program is executed, it takes a
 
 Usage: `\i p8.sql` (psql command), then `select q08('Vendor-Number', 'Account Number', transaction_amount);` (SQL command)
 
-> After creating the function for P8, select the function to receive table output that displays each vendor's name, and new balance (after adding the 10% service fee of the amount over their credit limit) - Example input, output:
+> After creating the function for P8, select the function to receive table output that displays the new transaction and updated customer and vendor records (after adding the transaction and increasing both the customer and vendor balances) - Example input, output:
+
+- NOTE: the program aborts the transaction and provides an error message and hint to the user for an invalid/non-existent vendor number or customer account number (where invalid vendor numbers take priority)
+- NOTE: Shows new transaction and updated customer and vendor records using a single joined table (see output format below example)
 
 ```text
+mvanbrae=> SELECT * FROM customer;
+ account |        cname         | province | cbalance | crlimit
+---------+----------------------+----------+----------+---------
+ A1      | Smith                | ONT      |  2515.00 |    2000
+ A2      | Jones                | BC       |  2014.00 |    2500
+ A3      | Doc                  | ONT      |   150.00 |    1000
+(3 rows)
+
+mvanbrae=> SELECT * FROM vendor;
+  vno  |        vname         |    city    | vbalance
+-------+----------------------+------------+----------
+ V1    | IKEA                 | Toronto    |   200.00
+ V2    | Walmart              | Waterloo   |   671.05
+ V3    | Esso                 | Windsor    |     0.00
+ V4    | Esso                 | Waterloo   |   225.00
+(4 rows)
+
+mvanbrae=> SELECT * FROM transaction;
+  tno  |  vno  | account |   t_date   | amount
+-------+-------+---------+------------+---------
+ T1    | V2    | A1      | 2020-07-15 | 1325.00
+ T2    | V2    | A3      | 2019-12-16 | 1900.00
+ T3    | V3    | A1      | 2020-09-01 | 2500.00
+ T4    | V4    | A2      | 2020-03-20 | 1613.00
+ T5    | V4    | A3      | 2020-07-31 | 2212.00
+(5 rows)
+
+mvanbrae=> \i p8.sql
+CREATE FUNCTION
+mvanbrae=> select q08('V5', 'A3', 69.69);
+ERROR:  Nonexistent vendor number = V5
+HINT:  Please enter a valid vendor number
+CONTEXT:  PL/pgSQL function q08(character,character,numeric) line 14 at RAISE
+mvanbrae=> select q08('V3', 'A5', 69.69);
+ERROR:  Nonexistent customer account number = A5
+HINT:  Please enter a valid customer account number
+CONTEXT:  PL/pgSQL function q08(character,character,numeric) line 18 at RAISE
+mvanbrae=> select q08('V3', 'A3', 69.69);
+                                                               q08
+---------------------------------------------------------------------------------------------------------------------------------
+ ("V3   ","A3   ","T6   ",2020-11-11,69.69,"Doc                 ","ONT  ",219.69,1000,"Esso                ","Windsor   ",69.69)
+(1 row)
+
+mvanbrae=>
 ```
+
+- Output Format = `vno, account, tno, t_date, amount, cname, province, cbalance, crlimit, vname, city, vbalance`
+- NOTE: customer balance increases because they now owe more money to their credit card after using it for the transaction
+- NOTE: vendor balance increases because they now possess more money after the transaction
