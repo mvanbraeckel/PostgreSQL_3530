@@ -8,7 +8,7 @@ create or replace function q05() returns table (vendor_num CHAR(5), vendor_name 
     declare
         c1 cursor for select vno from vendor;
         v_num char(5);
-        total_trans int := 0;
+        total_trans int;
         
     begin
         open c1;

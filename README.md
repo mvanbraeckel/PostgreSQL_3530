@@ -262,7 +262,7 @@ Program 5: Calculates the total amount of transactions of every vendor in the tr
 
 Usage: `\i p5.sql` (psql command), then `select q05();` (SQL command)
 
-> After creating the function for P5, select the function to receive table output that displays each vendor's number, name, and balance (after adding the total amount of its transactions to its balance) - Example input, output:
+> After creating the function for P5, select the function to receive table output that displays each vendor's number, name, and new balance (after adding the total amount of its transactions to its balance) - Example input, output:
 
 ```text
 mvanbrae=> SELECT * FROM vendor;
@@ -296,4 +296,15 @@ mvanbrae=> select q05();
 (4 rows)
 
 mvanbrae=>
+```
+
+### p6.sql
+
+Program 6: Charges each vendor a service fee that is 4% of the vendor's balance, and subtracts the service fee from the balance. The program then displays the name of each vendors, the fee charged, and the new balance. ***(2%)***
+
+Usage: `\i p6.sql` (psql command), then `select q06();` (SQL command)
+
+> After creating the function for P6, select the function to receive a series of notices that displays each vendor's name, fee charged, and new balance (after subtracting the 4% service fee) - Example input, output:
+
+```text
 ```
