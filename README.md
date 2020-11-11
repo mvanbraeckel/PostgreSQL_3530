@@ -95,7 +95,7 @@ INSERT 0 1
 INSERT 0 1
 INSERT 0 1
 INSERT 0 1
-userid=> 
+userid=>
 ```
 
 ### p1.sql
@@ -142,7 +142,7 @@ Usage: `\i p2.sql` (psql command), then `select q02('Vendor-Name');` (SQL comman
 > After creating the function for P2, select the function and provide a vendor name as a parameter to receive table output that displays customer numbers, names, and provinces - Example input, output:
 
 ```text
-mvanbrae=> \i p2.sql 
+mvanbrae=> \i p2.sql
 CREATE FUNCTION
 mvanbrae=> select q02('IKEA');
  q02
@@ -171,11 +171,13 @@ mvanbrae=>
 
 Program 3: Inserts a new customer record (tuple). Write this program as a function, which takes data of the customer as parameters and stores the data into the customer table. It then displays all the customer records, where the balance of the new customer should be zero (0.00). ***(2%)***
 
-Usage: `\i p3.sql` (psql command), then `select q03('Customer-Name', 'Province', credit_limit);` (SQL command)
+Usage: `\i p3.sql` (psql command), then `select q03('Customer-Name', 'Province', credit_limit_number);` (SQL command)
 
 > After creating the function for P3, select the function and provide a customer name, province, and credit limit as parameters to receive table output that displays all customers after adding the new customer with balance of 0.00 - Example input, output:
 
 ```text
+mvanbrae=> \i p3.sql
+CREATE FUNCTION
 mvanbrae=> select q03('Mitchell', 'MB', 9001);
                           q03
 -------------------------------------------------------
@@ -204,7 +206,48 @@ Program 4: Displays the most recent transaction of every customer. The program d
 
 Usage: `\i p4.sql` (psql command), then `select q04();` (SQL command)
 
-> After creating the function for P3, select the function and provide to receive table output that displays all customers after adding the new customer with balance of 0.00 - Example input, output:
+> After creating the function for P3, select the function and provide to receive a series of notices that display each customer's most recent transaction, or their account info and "no transaction" - Example input, output:
 
 ```text
+mvanbrae=> \i p4.sql
+CREATE FUNCTION
+mvanbrae=> select q04();
+NOTICE:  A1    Smith                2500.00 Esso
+NOTICE:  A2    Jones                1613.00 Esso
+NOTICE:  A3    Doc                  2212.00 Esso
+ q04 
+-----
+
+(1 row)
+
+mvanbrae=>
+```
+
+> If a customer without transactions is added - Example input, output:
+
+```text
+mvanbrae=> \i p3.sql
+CREATE FUNCTION
+mvanbrae=> select q03('Piccolo', 'NAMEK', 8000);
+                          q03
+-------------------------------------------------------
+ ("A1   ","Smith               ","ONT  ",2515.00,2000)
+ ("A2   ","Jones               ","BC   ",2014.00,2500)
+ ("A3   ","Doc                 ","ONT  ",150.00,1000)
+ ("A4   ","Piccolo             ",NAMEK,0.00,8000)
+(4 rows)
+
+mvanbrae=> \i p4.sql
+CREATE FUNCTION
+mvanbrae=> select q04();
+NOTICE:  A1    Smith                2500.00 Esso
+NOTICE:  A2    Jones                1613.00 Esso
+NOTICE:  A3    Doc                  2212.00 Esso
+NOTICE:  A4    Piccolo              "no transaction"
+ q04
+-----
+
+(1 row)
+
+mvanbrae=>
 ```

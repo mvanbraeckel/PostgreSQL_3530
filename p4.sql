@@ -4,14 +4,14 @@
  *  If a customer has no transaction (e.g. the new one), the program should display "no transaction". (2%)
  */
 
-create or replace function q04() returns returns void as $$
+create or replace function q04() returns void as $$
     declare
         c1 cursor for select account from customer;
         acc char(5);
         c_acc char(5);
         c_name char(20);
-        t_amt NUMERIC(10,2);
-        v_name NUMERIC(10,2);
+        t_amt numeric(10,2);
+        v_name char(20);
 
     begin
         open c1;
