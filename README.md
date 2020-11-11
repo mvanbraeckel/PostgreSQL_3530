@@ -265,4 +265,35 @@ Usage: `\i p5.sql` (psql command), then `select q05();` (SQL command)
 > After creating the function for P5, select the function to receive table output that displays each vendor's number, name, and balance (after adding the total amount of its transactions to its balance) - Example input, output:
 
 ```text
+mvanbrae=> SELECT * FROM vendor;
+  vno  |        vname         |    city    | vbalance
+-------+----------------------+------------+----------
+ V1    | IKEA                 | Toronto    |   200.00
+ V2    | Walmart              | Waterloo   |   671.05
+ V3    | Esso                 | Windsor    |     0.00
+ V4    | Esso                 | Waterloo   |   225.00
+(4 rows)
+
+mvanbrae=> SELECT * FROM transaction;
+  tno  |  vno  | account |   t_date   | amount
+-------+-------+---------+------------+---------
+ T1    | V2    | A1      | 2020-07-15 | 1325.00
+ T2    | V2    | A3      | 2019-12-16 | 1900.00
+ T3    | V3    | A1      | 2020-09-01 | 2500.00
+ T4    | V4    | A2      | 2020-03-20 | 1613.00
+ T5    | V4    | A3      | 2020-07-31 | 2212.00
+(5 rows)
+
+mvanbrae=> \i p5.sql
+CREATE FUNCTION
+mvanbrae=> select q05();
+                   q05
+------------------------------------------
+ ("V1   ","IKEA                ",200.00)
+ ("V2   ","Walmart             ",3896.05)
+ ("V3   ","Esso                ",2500.00)
+ ("V4   ","Esso                ",4050.00)
+(4 rows)
+
+mvanbrae=>
 ```
