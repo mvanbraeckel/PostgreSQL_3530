@@ -4,9 +4,6 @@
  *  It then displays all the customer records, where the balance of the new customer should be zero (0.00). (2%)
  */
 
--- This function displays vno of the vendor whose name and city are
--- passed as parameters.
-
 create or replace function q03(name char, prov char, cr_limit int) returns table (cust_acc CHAR(5), cust_name CHAR(20), cust_prov CHAR(5), cust_bal NUMERIC(10,2), cust_lim INT) as $$
     declare
         acc char(5);
@@ -14,9 +11,9 @@ create or replace function q03(name char, prov char, cr_limit int) returns table
 
     begin
         loop
-            if exists(select account from customer where account=('A' || id)) then
+            if not exists(select account from customer where account=('A' || id)) then
                 acc := 'A' || id;
-                raise notice 'new acc = %', acc;
+                --raise notice 'new acc = %', acc;
                 exit;
             else
                 id := id + 1;
