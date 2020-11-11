@@ -5,7 +5,7 @@
 - @version 10/11/2020
 - @file README
 - @brief Uses PostgreSQL to create tables and perform operations for a database that represents a tiny credit card company, where tables store data of customers, vendors, and transactions (Data Base Systems & Concepts course A3)
-- @note personal use: `ssh userid@linux.socs.uoguelph.ca` to connect, where files are in `cis3530/a3/`; then use `psql -h db` (actually use `psql -h db -d userid -U userid`?) to connect to PostgreSQL database to test things (where userid=mvanbrae for my account)
+- @note personal use: `ssh userid@linux.socs.uoguelph.ca` to connect, where files are in `cis3530/a3/`; then use `psql -h db` (actually use `psql -h db -d userid -U userid`?) to connect to PostgreSQL database to test things (where userid=mvanbrae for my account, and I will use it from now on)
   - Use `kinit` and enter central login ID password if error like the following occurs when trying to connect:
   - followed by example of how to use stuff (via a personal GitHub transfer, push from local, pull on SoCS machine):
 
@@ -45,8 +45,11 @@ Connection to linux.socs.uoguelph.ca closed.
 - NOTE: `a3data.sql` first drops the tables and then creates them (checks existence in both cases still)
   - This makes it useful for clearing data from other scripts to reset the database
 - Assumption: Unless otherwise stated, assume nothing has changed from the database before running the script / example input output
+  - In other words, assume that `\i a3data.sql` occurs before the rest for all input output examples below (unless I specify otherwise)
 - Assumption: vendor `vbalance` represents money the vendor has
 - Assumption: customer `cbalance` represents money owed to their credit card
+- Assumption: wherever it applies, either displaying info using `raise notice` or `return` (table) are both acceptable
+- Assumption: as long as all the desired information is displayed, any format and/or order is acceptable
 
 ## How to Use
 
@@ -76,12 +79,12 @@ Insert data into the tables ***(2%)***, where the data are those on the eighth p
 | T4 | V4 | A2 | 2020-03-20 | 1613.00 |
 | T5 | V4 | A3 | 2020-07-31 | 2212.00 |
 
-Usage: `\i create.sql`
+Usage: `\i a3data.sql`
 
 > Creates the tables and inserts the data - Example input, output:
 
 ```text
-userid=> \i create.sql
+mvanbrae=> \i a3data.sql
 DROP TABLE
 DROP TABLE
 DROP TABLE
@@ -100,7 +103,7 @@ INSERT 0 1
 INSERT 0 1
 INSERT 0 1
 INSERT 0 1
-userid=>
+mvanbrae=>
 ```
 
 ### p1.sql
@@ -114,8 +117,7 @@ Usage: `\i p1.sql` (psql command), then `select q01('Customer-Name');` (SQL comm
 ```text
 mvanbrae=> \i p1.sql
 CREATE FUNCTION
-mvanbrae=> select q01('Smith')
-mvanbrae-> ;
+mvanbrae=> select q01('Smith');
                      q01
 ---------------------------------------------
  ("Walmart             ",2020-07-15,1325.00)
@@ -413,6 +415,12 @@ mvanbrae=> select q08('V3', 'A3', 69.69);
                                                                q08
 ---------------------------------------------------------------------------------------------------------------------------------
  ("V3   ","A3   ","T6   ",2020-11-11,69.69,"Doc                 ","ONT  ",219.69,1000,"Esso                ","Windsor   ",69.69)
+(1 row)
+
+mvanbrae=> select q08('V1', 'A1', 1234.56);
+                                                                 q08
+--------------------------------------------------------------------------------------------------------------------------------------
+ ("V1   ","A1   ","T7   ",2020-11-11,1234.56,"Smith               ","ONT  ",3749.56,2000,"IKEA                ","Toronto   ",1434.56)
 (1 row)
 
 mvanbrae=>
