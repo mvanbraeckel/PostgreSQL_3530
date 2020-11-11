@@ -198,3 +198,13 @@ mvanbrae=> select q03('Grace Kim', 'ONT', 1000);
 mvanbrae=>
 ```
 
+### p4.sql
+
+Program 4: Displays the most recent transaction of every customer. The program displays account number, customer name, amount, and vendor name. If a customer has no transaction (e.g. the new one), the program should display "no transaction". ***(2%)***
+
+Usage: `\i p4.sql` (psql command), then `select q04();` (SQL command)
+
+> After creating the function for P3, select the function and provide to receive table output that displays all customers after adding the new customer with balance of 0.00 - Example input, output:
+
+```text
+```

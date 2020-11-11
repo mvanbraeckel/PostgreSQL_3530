@@ -38,7 +38,7 @@ create or replace function q05()
         end loop;
         close c1;
 
-    return query select account, cname, cbalance from c;
+        return query select account, cname, cbalance from c;
     end;
 $$ language plpgsql;
 
