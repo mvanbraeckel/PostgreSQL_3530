@@ -7,13 +7,12 @@
 - @brief Uses PostgreSQL to create tables and perform operations for a database that represents a tiny credit card company, where tables store data of customers, vendors, and transactions (Data Base Systems & Concepts course A3)
 - @note personal use: `ssh userid@linux.socs.uoguelph.ca` to connect, where files are in `cis3530/a3/`; then use `psql -h db` (actually use `psql -h db -d userid -U userid`?) to connect to PostgreSQL database to test things (where userid=mvanbrae for my account)
   - Use `kinit` and enter central login ID password if error like the following occurs when trying to connect:
+  - followed by example of how to use stuff (via a personal GitHub transfer, push from local, pull on SoCS machine):
 
 ```text
 psql: GSSAPI continuation error: Unspecified GSS failure.  Minor code may provide more information
 GSSAPI continuation error: No Kerberos credentials available (default cache: FILE:/tmp/krb5cc_0000)
 ```
-
-  - example of how to use stuff (via a personal GitHub transfer, push from local, pull on SoCS machine):
 
 ```terminal
 $ ssh mvanbrae@linux.socs.uoguelph.ca
@@ -206,7 +205,7 @@ Program 4: Displays the most recent transaction of every customer. The program d
 
 Usage: `\i p4.sql` (psql command), then `select q04();` (SQL command)
 
-> After creating the function for P3, select the function and provide to receive a series of notices that display each customer's most recent transaction, or their account info and "no transaction" - Example input, output:
+> After creating the function for P4, select the function to receive a series of notices that displays each customer's most recent transaction, or their account info and "no transaction" - Example input, output:
 
 ```text
 mvanbrae=> \i p4.sql
@@ -215,7 +214,7 @@ mvanbrae=> select q04();
 NOTICE:  A1    Smith                2500.00 Esso
 NOTICE:  A2    Jones                1613.00 Esso
 NOTICE:  A3    Doc                  2212.00 Esso
- q04 
+ q04
 -----
 
 (1 row)
@@ -250,4 +249,15 @@ NOTICE:  A4    Bubbles              "no transaction"
 (1 row)
 
 mvanbrae=>
+```
+
+### p5.sql
+
+Program 5: Calculates the total amount of transactions of every vendor in the transaction table, and add the total amount to the vendor's current balance. The program then displays vendor numbers, vendor names and the new balances. ***(2%)***
+
+Usage: `\i p5.sql` (psql command), then `select q05();` (SQL command)
+
+> After creating the function for P5, select the function to receive table output that displays each vendor's number, name, and balance (after adding the total amount of its transactions to its balance) - Example input, output:
+
+```text
 ```

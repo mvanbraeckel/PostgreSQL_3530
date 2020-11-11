@@ -1,58 +1,28 @@
-
--- This function adds 100 to the balance of each customer who has more than
--- one transection, and takes away 100 from the balance of each of the other
--- customers. It then displays account number, name and new balance of each
--- customer.
--- In this function, ”return” is used for output.
-
 /*
--- In this function, ”raise notice” is used for output.
+ * Program 5: Calculates the total amount of transactions of every vendor in the transaction table,
+ *  and add the total amount to the vendor's current balance.
+ *  The program then displays vendor numbers, vendor names and the new balances. (2%)
 */
 
-create or replace function q05()
-		returns table (acc char(3), name char(20), balance decimal(10,2))
-		as $$
-
---create or replace function q05() returns void as $$
+create or replace function q05() returns table (vendor_num CHAR(5), vendor_name CHAR(20), vendor_bal NUMERIC(10,2)) as $$
     declare
-        c1 cursor for select account, count(*) from t group by account;
-        c2 cursor for select account, cname, cbalance from c;
-        acc char(10);
-        num_trans integer;
-        cust_acc char(10);
-        cust_name char(10);
-        cust_balance real;
+        c1 cursor for select vno from vendor;
+        v_num char(5);
+        total_trans int := 0;
         
     begin
         open c1;
         loop
-            fetch c1 into acc, num_trans;
+            fetch c1 into v_num;
             exit when not found;
-            if (num_trans>1) then
-                update c set cbalance = cbalance + 100
-                    where account = acc;
-            else
-                update c set cbalance = cbalance - 100
-                    where account = acc;
+
+            select sum(amount) into total_trans from customer natural join transaction natural join vendor where vno=v_num;
+            update transaction set vbalance = vbalance + total_trans where vno=v_num;
+
             end if;
         end loop;
         close c1;
 
-        return query select account, cname, cbalance from c;
+        return query select vno, vname, vbalance from vendor;
     end;
 $$ language plpgsql;
-
-/*
-        open c2;
-        loop
-            fetch c2 into cust_acc, cust_name, cust_balance;
-            exit when not found;
-            raise notice 'Account: %', cust_acc;
-            raise notice 'Customer name: %', cust_name;
-            raise notice 'New balance: %', cust_balance;
-            raise notice ' ';
-        end loop;
-        close c2;
-    end;
-$$ language plpgsql;
-*/
