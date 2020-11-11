@@ -340,4 +340,13 @@ Usage: `\i p7.sql` (psql command), then `select q07();` (SQL command)
 > After creating the function for P7, select the function to receive table output that displays each vendor's name, and new balance (after adding the 10% service fee of the amount over their credit limit) - Example input, output:
 
 ```text
+mvanbrae=> \i p7.sql
+CREATE FUNCTION
+mvanbrae=> select q07();
+               q07
+----------------------------------
+ ("Smith               ",2566.50)
+(1 row)
+
+mvanbrae=>
 ```
